@@ -1,5 +1,5 @@
-# Use a imagem baseada em Alpine com PHP 8.3
-FROM php:8.3-fpm-alpine
+# Use a imagem baseada em Alpine com PHP 8.4
+FROM php:8.4-fpm-alpine
 
 # Arguments
 ARG user=cristian
