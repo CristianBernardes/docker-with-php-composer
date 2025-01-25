@@ -19,7 +19,10 @@ RUN apk update && \
     g++ \
     lame \
     netcat-openbsd \
-    tzdata && \
+    tzdata \
+    git \
+    python3 \
+    py3-pip && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd pdo_mysql intl zip && \
     ln -snf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
