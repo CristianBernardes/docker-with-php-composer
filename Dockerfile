@@ -22,10 +22,16 @@ RUN apk update && \
     tzdata \
     git \
     python3 \
-    py3-pip && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install -j$(nproc) gd pdo_mysql intl zip && \
-    ln -snf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
+    py3-pip \
+    gmp-dev \
+    openssl-dev
+
+# Configurar e instalar extensões do PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install -j$(nproc) gd pdo_mysql intl zip gmp ftp
+
+# Configurar o fuso horário
+RUN ln -snf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     echo "America/Sao_Paulo" > /etc/timezone && \
     apk del tzdata && \
     rm -rf /var/cache/apk/*
